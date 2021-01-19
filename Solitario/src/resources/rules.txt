@@ -1,0 +1,55 @@
+Scopo del gioco
+
+Lo scopo del Solitario è di formare quattro pile di carte, le carte vanno spostate dalle colonne 
+alle 4 basi libere. Ogni pila deve essere dello stesso seme. Inoltre le carte devono essere disposte 
+in ordine, dall'Asso al Re (A-2-3-4-5-6-7-8-9-10-Fante-Dama-Re).
+
+Come spostare le carte
+
+Le carte possono essere spostate dalle colonne secondo le regole seguenti: Si può aggiungere una 
+carta sopra un'altra carta scoperta se la carta che si vuole aggiungere è di colore diverso e di un 
+valore immediatamente inferiore. Ad esempio: se in una determinata colonna l'ultima carta aperta è 
+un 8 di fiori è possibile posizionare un 7 rosso (un 7 di cuori o 7 di quadri, il seme non è 
+importante, conta soltanto il colore) sopra a questa. Sopra il 7 rosso sarà possibile attaccarvi 
+un 6 nero, e così via.
+
+Le carte possono essere spostate da colonna a colonna, singolarmente o in gruppo (a patto che il 
+giusto ordine non venga rispettato). Se quindi in una colonna ci sono un 4 rosso, un 5 nero e un 6 
+rosso impilati uno al di sotto dell'altro essi possono essere tutti e tre trasferiti (in una volta 
+sola) al di sotto di un 7 nero.
+
+Se una carta in una delle colonne viene esposta in quel punto si scoprirà automaticamente un'altra 
+carta, fino a quando la colonna resta vuota e quando ve ne è 1 completamente vuota per poter 
+cominciare una nuova colonna vi potrai mettere soltanto un Re (o un gruppo di carte con un Re in 
+cima).
+
+Alla fine lo scopo del Solitario è di poter impilare tutte le carte in ordine crescente sulle 
+quattro basi (stack). Ogni pila di carte (stack) deve partire con un Asso. Se poi si libera un'altra 
+carta di valore immediatamente superiore (e dello stesso seme), la si può mettere sopra l'Asso al 
+fine di ottenere una pila dello stesso seme. Ad esempio, dopo aver messo l'asso di picche su uno 
+stack vuoto sarà possibile in seguito mettervi sopra un due di picche, poi un tre di picche sul due,
+ecc. fino a quando la base (stack) sarà completa.
+
+Dopo che hai messo una carta in una delle basi la puoi rimettere, se necessario, nelle colonne.
+
+Come si usano le carte non utilizzate (stock)?
+
+Quando non è più possibile spostare le carte nelle colonne si vanno a vedere le carte rimaste nello 
+stock. Stiamo spiegando un gioco che distribuisce 3 carte, come nel Solitario originale. 
+E' possibile anche giocare con 1 carta, per questa variante si può guardare il capitolo sulle 
+varianti del gioco.
+
+Nella versione in cui si distribuiscono 3 carte, accanto allo stock sono presenti 3 carte l'una 
+sull'altra. La terza carta di queste 3 è la carta che può essere spostata. Le altre due carte non 
+si possono usare, ma possono essere guardate. La carta che si trova al di sopra dello stock può 
+essere spostata nelle colonne o nella base (stack), se possibile.
+
+Se non si possono usare le carte che sono aperte, se ne possono girare tre extra. Questo lo si può 
+fare illimitatamente. Se hai avuto tutte le carte dello stock, rigira semplicemente tutte le carte 
+e ricomincia di nuovo da sopra. Attenzione! Le carte però non verranno mescolate di nuovo.
+
+Vincere a Solitario
+
+Il gioco continua ad andare avanti fino a quando non si saranno riempite tutte le 4 basi (stack) o 
+fino a quando le carte da spostare non saranno finite. Avrai vinto se tutte le carte saranno state 
+messe nelle loro basi che quindi saranno complete.
