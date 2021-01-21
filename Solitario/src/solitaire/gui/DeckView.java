@@ -77,6 +77,7 @@ public class DeckView extends HBox implements GameModelListener {
 		return canvas;
 	}
 	
+	@Override
 	public void gameStateChanged()
 	{
 		if(GameModel.instance().isDeckEmpty() && !GameModel.instance().isDiscardPileEmpty())
