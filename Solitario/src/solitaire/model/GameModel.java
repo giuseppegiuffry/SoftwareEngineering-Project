@@ -15,7 +15,7 @@ import solitaire.cards.Suit;
 
 public class GameModel implements GameModelView {
 	
-	private static final GameModel INSTANCE = new GameModel();
+	private static GameModel INSTANCE;
 	
 	private static final Move NULL_MOVE = new Move()
 	{
@@ -60,10 +60,33 @@ public class GameModel implements GameModelView {
 	private final List<GameModelListener> aListeners = new ArrayList<>();
 	private final PlayingStrategy aPlayingStrategy = new GreedyPlayingStrategy();
 	
-	
-	public GameModel()
+	/**
+	 * A single private constructor
+	 */
+	private GameModel()
 	{
 		reset();
+	}
+	
+	public void reset()
+	{
+		aMoves.clear();
+		aDeck.shuffle();
+		aDiscard.clear();
+		aFoundations.initialize();
+		aTableau.initialize(aDeck);
+		notifyListeners();
+	}
+	
+	/**
+	 * @return The singleton instance for this class.
+	 */
+	public static GameModel instance()
+	{
+		if(INSTANCE == null) {
+			INSTANCE = new GameModel();
+		}
+		return INSTANCE;
 	}
 
 	public int getScore()
@@ -83,13 +106,6 @@ public class GameModel implements GameModelView {
 		return !move.isNull();
 	}
 	
-	/**
-	 * @return The singleton instance for this class.
-	 */
-	public static GameModel instance()
-	{
-		return INSTANCE;
-	}
 	
 	public void addListener(GameModelListener pListener)
 	{
@@ -111,16 +127,6 @@ public class GameModel implements GameModelView {
 		}
 	}
 	
-	
-	public void reset()
-	{
-		aMoves.clear();
-		aDeck.shuffle();
-		aDiscard.clear();
-		aFoundations.initialize();
-		aTableau.initialize(aDeck);
-		notifyListeners();
-	}
 	
 	public boolean isCompleted()
 	{
@@ -335,7 +341,7 @@ public class GameModel implements GameModelView {
 	public Move getCardMove(Card pCard, Location pDestination)
 	{
 		Location source = find( pCard );
-		if( source instanceof TableauPile  && aTableau.revealsTop(pCard))
+		if( source instanceof TableauPile && aTableau.revealsTop(pCard))
 		{
 			return new CompositeMove(new CardMove(pCard, pDestination), new RevealTopMove((TableauPile)source) );
 		}

@@ -81,7 +81,7 @@ public class DeckView extends HBox implements GameModelListener {
 	{
 		if(GameModel.instance().isDeckEmpty() && !GameModel.instance().isDiscardPileEmpty())
 		{
-			System.out.println("Ho finito le carte del deck");
+			
 			((Button)getChildren().get(0)).setGraphic(createNewGameImage());
 		}
 		else

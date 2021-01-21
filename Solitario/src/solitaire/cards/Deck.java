@@ -56,7 +56,7 @@ private CardStack aCards;
 	}
 	
 	/**
-	 * @return True iff there are no cards in the deck.
+	 * @return True if there are no cards in the deck.
 	 */
 	public boolean isEmpty()
 	{
