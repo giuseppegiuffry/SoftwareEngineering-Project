@@ -14,3 +14,29 @@ Scopo del progetto è quello di implementare il gioco da tavola Solitario seguen
 - GUI
 - Visualizzare le regole del gioco
 - Annullare l'ultima mossa eseguita
+
+## Avvio
+Per eseguire l'applicazione è necessario seguire i seguenti step:
+
+- Scaricare una versione [JDK11](https://www.oracle.com/it/java/technologies/javase-jdk11-downloads.html) o superiore;
+- Settare la variabile d'ambiente JAVA_HOME alla directory di installazione di JDK;
+- Scaricare una versione appropriata di [JavaFXSDK](https://gluonhq.com/products/javafx/) ed estrarre l'archivio in una directory;
+
+### In Eclipse
+- Includere il nuovo JDK come Installed JREs in Eclipse -> Preferences -> Java -> Installed JREs -> Add
+- Creare una nuova User Library in Eclipse -> Window -> Preferences -> Java -> Build Path -> User Libraries -> New
+- Chiamarla JavaFX11 e includere i jar dentro la cartella **lib** di JavaFX 11
+- Aggiungere la libreria al progetto andando su Properties -> Java Build Path -> Libraries -> Add Library -> User Library e selezionare JavaFX11
+- Andare su Run -> Run Configurations...  -> Java Application e aggiungere questi argomenti VM:
+
+```[shell]
+--module-path "\path\to\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml
+```
+- Cliccare su Run -> Run As -> Java Application per eseguire l'applicazione
+
+### Esecuzione JAR
+Per eseguire il file JAR dell'applicazione, posizionarsi nella directory in cui si trova e digitare da linea di comando:
+
+```[shell]
+java --module-path "\path\to\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar Solitario.jar
+```
