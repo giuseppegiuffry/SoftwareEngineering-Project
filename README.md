@@ -40,3 +40,5 @@ Per eseguire il file JAR dell'applicazione, posizionarsi nella directory in cui 
 ```[shell]
 java --module-path "\path\to\javafx-sdk-11.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar Solitario.jar
 ```
+
+Per maggiori dettagli su JavaFX e su come eseguire in maniera corretta un progetto che utilizza questa libreria, eventualmente usando anche altri ambienti di sviluppo, si consiglia di fare riferimento a questa [guida](https://openjfx.io/openjfx-docs/).
