@@ -1,6 +1,11 @@
 # Progetto finale di Ingegneria del Software - a.a. 2020-2021
 
-Scopo del progetto è quello di implementare il gioco da tavola Solitario seguendo il pattern architetturale Model View Controller per la realizzazione del modello secondo il paradigma di programmazione orientato agli oggetti. Il risultato finale copre completamente le regole definite dal gioco e permette di interagire con esse tramite un'interfaccia grafica (GUI).
+Scopo del progetto è quello di implementare il gioco da tavola Solitario, seguendo il pattern architetturale Model View Controller, per la realizzazione del modello secondo il paradigma di programmazione orientato agli oggetti. Questo applicativo è stato realizzato seguendo un approccio iterativo, in particolare nelle prime iterazioni ci si è concentrati a implementare le funzionalità più importanti individuate nei requisiti. 
+A conclusione di tale lavoro e dopo aver applicato i test unitari con JUnit (con relative correzioni), è stata prodotta la versione del programma "Solitario.jar" presente nella cartella [jar](https://github.com/giuseppegiuffry/SoftwareEngineering-Project/tree/main/Solitario/jar).  
+Il risultato finale copre completamente le regole definite dal gioco e permette di interagire con esse tramite un'interfaccia grafica (GUI).
+
+### Documentazione
+All'interno della cartella **documentation** è possibile trovare tutta la documentazione, che comprende i documenti e i diagrammi UML realizzati per la progettazione del software. Le varie cartelle ("01-Ideazione", "02-Elaborazione", ecc) contengono i documenti prodotti via via che si procedeva con la progettazione e con l'implementazione dell'applicazione.
 
 ### Librerie e Plugins
 |Libreria/Plugin|Descrizione|
