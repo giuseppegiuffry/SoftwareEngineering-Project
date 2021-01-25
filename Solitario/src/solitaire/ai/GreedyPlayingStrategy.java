@@ -11,6 +11,18 @@ import solitaire.model.GameModelView;
 import solitaire.model.Move;
 import solitaire.model.TableauPile;
 
+/**
+ * Makes the first possible move in this order: 
+ * 1. Discarding if the discard pile is empty;
+ * 2. Moving a card from the discard pile to a foundation pile;
+ * 3. Moving a card from the discard pile to the tableau;
+ * 4. Moving a card from the tableau to a foundation pile, in order of piles;
+ * 5. Moving from one pile in the tableau to another, if this either reveals a fresh card 
+ * or frees up a pile for a king;
+ * 6. None of the above was possible, discards if possible;
+ * 7. If discarding was not possible, return the null move.
+ */
+
 public class GreedyPlayingStrategy implements PlayingStrategy {
 	
 	private static final List<Function<GameModelView, Move>> SUBSTRATEGIES = new ArrayList<>();
@@ -64,6 +76,9 @@ public class GreedyPlayingStrategy implements PlayingStrategy {
 		return pModel.getNullMove();
 	}
 	
+	/*
+	 * If it's possible to move the top of the discard pile to the tableau, do it.
+	 */
 	private static Move substrategyMoveDiscardToTableau(GameModelView pModel)
 	{
 		if( pModel.isDiscardPileEmpty() )
@@ -80,6 +95,9 @@ public class GreedyPlayingStrategy implements PlayingStrategy {
 		return pModel.getNullMove();
 	}
 	
+	/*
+	 * If it's possible to move a card from tableau to the foundation, do it.
+	 */
 	private static Move substrategyMoveFromTableauToFoundation(GameModelView pModel)
 	{
 		for(TableauPile tableauPile : TableauPile.values())
@@ -127,6 +145,10 @@ public class GreedyPlayingStrategy implements PlayingStrategy {
 		return pModel.getNullMove();
 	}
 	
+	
+	/*
+	 * If it's possible to discard a card from the deck, do it.
+	 */
 	private static Move substrategyDiscard(GameModelView pModel)
 	{
 		if( pModel.isDeckEmpty() )

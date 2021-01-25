@@ -1,6 +1,5 @@
 package solitaire.gui;
 
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -18,6 +17,12 @@ import solitaire.model.FoundationPile;
 import solitaire.model.GameModel;
 import solitaire.model.TableauPile;
 
+/**
+ * Application class for Solitaire. The responsibility of this class is limited 
+ * to assembling the major UI components and launching the application. 
+ * All gesture handling logic is handled by its composed elements, 
+ * which act as observers of the game model.
+ */
 public class Solitaire extends Application {
 	
 	private static final int WIDTH = 680;
@@ -33,9 +38,12 @@ public class Solitaire extends Application {
 	 
 	public Solitaire() {}
 
+	/**
+	 * Launches the application.
+	 * @param pArgs This program takes no argument.
+	 */
 	public static void main(String[] args) {
 		launch(args);
-		
 	}
 
 	@Override
@@ -89,7 +97,10 @@ public class Solitaire extends Application {
         root.setOnKeyTyped(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				if(event.getCharacter().equals("u")) {
+				if(event.getCharacter().equals("r")) {
+					GameModel.instance().tryToAutoPlay();
+				}
+				else if(event.getCharacter().equals("u")) {
 					GameModel.instance().undoLast();
 				}
 				event.consume();

@@ -8,6 +8,10 @@ import solitaire.cards.CardImages;
 import solitaire.model.GameModel;
 import solitaire.model.GameModelListener;
 
+/**
+ * Component that shows the state of the discard pile and allows
+ * dragging cards from it.
+ */
 public class DiscardPileView extends HBox implements GameModelListener {
 	
 	private static final int PADDING = 5;

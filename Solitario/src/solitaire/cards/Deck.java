@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Deck {
 	
-private CardStack aCards;
+	private CardStack aCards;
 	
 	/**
 	 * Creates a new deck of 52 cards, shuffled.
@@ -38,8 +38,10 @@ private CardStack aCards;
 	 * @param pCard The card to place on top of the deck.
 	 * @pre pCard !=null
 	 */
-	public void push(Card pCard)
+	public void push(Card pCard) throws IllegalArgumentException
 	{
+		if(pCard == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		aCards.push(pCard);
 	}
@@ -49,9 +51,11 @@ private CardStack aCards;
 	 * @return The card drawn.
 	 * @pre !isEmpty()
 	 */
-	public Card draw()
+	public Card draw() throws IllegalArgumentException
 	{
-		
+		if(isEmpty())
+			throw new IllegalArgumentException("Invalid argument passed");
+	
 		return aCards.pop();
 	}
 	

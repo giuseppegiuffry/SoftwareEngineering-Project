@@ -3,9 +3,12 @@ package solitaire.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the Composite object.
+ */
 public class CompositeMove implements Move {
 	
-private final List<Move> aMoves = new ArrayList<>();
+	private final List<Move> aMoves = new ArrayList<>();
 	
 	/**
 	 * @param pMoves Any move to be added to this composite

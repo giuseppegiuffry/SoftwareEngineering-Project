@@ -19,6 +19,9 @@ import solitaire.model.GameModel;
 import solitaire.model.GameModelListener;
 import solitaire.model.TableauPile;
 
+/**
+ * Component that shows a stack of cards in the bottom stacks.
+ */
 public class CardPileView extends StackPane implements GameModelListener {
 
 	private static final int PADDING = 5;

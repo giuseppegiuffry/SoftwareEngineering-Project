@@ -13,6 +13,10 @@ import solitaire.cards.CardImages;
 import solitaire.model.GameModel;
 import solitaire.model.GameModelListener;
 
+/**
+ * Component that shows the deck and allows clicking it to draw cards. 
+ * Listens to game model state changes and updates itself to disappear if it is empty.
+ */
 public class DeckView extends HBox implements GameModelListener {
 	
 	private static final String BUTTON_STYLE_NORMAL = "-fx-background-color: transparent; -fx-padding: 5, 5, 5, 5;";

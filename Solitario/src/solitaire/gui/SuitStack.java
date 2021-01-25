@@ -13,17 +13,20 @@ import solitaire.model.FoundationPile;
 import solitaire.model.GameModel;
 import solitaire.model.GameModelListener;
 
+/**
+ * Component that shows a stack of cards in 
+ * which a completed suit is accumulated.
+ */
 public class SuitStack extends StackPane implements GameModelListener {
 
 	private static final int PADDING = 5;
-	// CSOFF:
+	
 	private static final String BORDER_STYLE = "-fx-border-color: lightgray;"
 			+ "-fx-border-width: 3;" + " -fx-border-radius: 10.0";
 	private static final String BORDER_STYLE_DRAGGED = "-fx-border-color: darkgray;"
 			+ "-fx-border-width: 3;" + " -fx-border-radius: 10.0";
 	private static final String BORDER_STYLE_NORMAL = "-fx-border-color: lightgray;"
 			+ "-fx-border-width: 3;" + " -fx-border-radius: 10.0";
-	// CSON:
 	
 	private CardDragHandler aDragHandler;
 	private FoundationPile aIndex;

@@ -36,8 +36,10 @@ public class Tableau {
 	 * @pre pDeck != null
 	 * 
 	 */
-	public void initialize(Deck pDeck)
+	public void initialize(Deck pDeck) throws IllegalArgumentException
 	{   
+		if(pDeck == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		aVisible.clear();
 		for( int i = 0; i < TableauPile.values().length; i++ )
@@ -65,8 +67,10 @@ public class Tableau {
 	 * @return True if the move is legal
 	 * @pre pCard != null && pPile != null
 	 */
-	public boolean canMoveTo(Card pCard, TableauPile pPile )
+	public boolean canMoveTo(Card pCard, TableauPile pPile ) throws IllegalArgumentException
 	{
+		if(pCard == null || pPile == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		CardStack pile = aPiles.get(pPile);
 		if( pile.isEmpty() )
@@ -86,8 +90,10 @@ public class Tableau {
 	 *     of the pile.
 	 * @pre pCard != null && contains(pCard);
 	 */
-	public boolean isBottomKing(Card pCard)
+	public boolean isBottomKing(Card pCard) throws IllegalArgumentException
 	{
+		if(pCard == null || !contains(pCard))
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		return pCard.getRank() == Rank.KING && aPiles.get(getPile(pCard)).peek(0).equals(pCard);
 	}
@@ -100,14 +106,17 @@ public class Tableau {
 	 * @return A copy of the at pPile.
 	 * @pre pPile != null
 	 */
-	public CardStack getPile(TableauPile pPile)
+	public CardStack getPile(TableauPile pPile) throws IllegalArgumentException
 	{
-		
+		if(pPile == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		return new CardStack(aPiles.get(pPile));
 	}
 	
-	public TableauPile getPile(Card pCard)
+	public TableauPile getPile(Card pCard) throws IllegalArgumentException
 	{
+		if(!contains(pCard))
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		for( TableauPile pile : TableauPile.values() )
 		{
@@ -136,8 +145,10 @@ public class Tableau {
 	 *     is visible.
 	 * @pre pCard != null && contains(pCard)
 	 */
-	boolean revealsTop(Card pCard)
+	boolean revealsTop(Card pCard) throws IllegalArgumentException
 	{
+		if(pCard == null || !contains(pCard))
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		Optional<Card> previous = getPreviousCard(pCard);
 		if( !previous.isPresent() )
@@ -152,7 +163,7 @@ public class Tableau {
 		Optional<Card> previous = Optional.empty();
 		for( Card card : aPiles.get(getPile(pCard)))
 		{
-			if( card == pCard )
+			if( card.equals(pCard) )
 			{
 				return previous;
 			}
@@ -194,8 +205,10 @@ public class Tableau {
 	 * @return A copy of the requested sequence.
 	 * @pre pCard != null && pPile != null
 	 */
-	public CardStack getSequence(Card pCard, TableauPile pPile)
+	public CardStack getSequence(Card pCard, TableauPile pPile) throws IllegalArgumentException
 	{
+		if(pCard == null || pPile == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		CardStack stack = aPiles.get(pPile);
 		List<Card> lReturn = new ArrayList<>();
@@ -219,8 +232,10 @@ public class Tableau {
 	 * @param pIndex The index of the requested pile.
 	 * @pre pIndex != null && !isEmpty(pIndex)
 	 */
-	public void showTop(TableauPile pIndex)
+	public void showTop(TableauPile pIndex) throws IllegalArgumentException
 	{
+		if(aPiles.get(pIndex).isEmpty())
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		aVisible.add(aPiles.get(pIndex).peek());
 	}
@@ -230,8 +245,10 @@ public class Tableau {
 	 * @param pIndex The index of the requested stack.
 	 * @pre pIndex != null && !isEmpty(pIndex)
 	 */
-	public void hideTop(TableauPile pIndex)
+	public void hideTop(TableauPile pIndex) throws IllegalArgumentException
 	{
+		if(aPiles.get(pIndex).isEmpty())
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		aVisible.remove(aPiles.get(pIndex).peek());
 	}
@@ -242,8 +259,10 @@ public class Tableau {
 	 * @return True if pIndex contains pCard
 	 * @pre pCard != null && pIndex != null
 	 */
-	public boolean contains(Card pCard, TableauPile pIndex)
+	public boolean contains(Card pCard, TableauPile pIndex) throws IllegalArgumentException
 	{
+		if(pCard == null || pIndex == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		for(Card card : aPiles.get(pIndex))
 		{
@@ -260,8 +279,10 @@ public class Tableau {
 	 * @return Whether pCard is contains in any stack.
 	 * @pre pCard != null;
 	 */
-	public boolean contains(Card pCard)
+	public boolean contains(Card pCard) throws IllegalArgumentException
 	{
+		if(pCard == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		for(TableauPile index : TableauPile.values())
 		{
@@ -278,9 +299,10 @@ public class Tableau {
 	 * @return true if pCard is visible in the piles.
 	 * @pre contains(pCard)
 	 */
-	public boolean isVisible(Card pCard)
+	public boolean isVisible(Card pCard) throws IllegalArgumentException
 	{
-		
+		if(!contains(pCard))
+			throw new IllegalArgumentException("Invalid argument passed");
 		return aVisible.contains(pCard);
 	}
 	
@@ -291,8 +313,10 @@ public class Tableau {
 	 *     the case where the card is at the bottom of the pile.
 	 * @pre pCard != null && contains(pCard)
 	 */
-	boolean isLowestVisible(Card pCard)
+	boolean isLowestVisible(Card pCard) throws IllegalArgumentException
 	{
+		if(pCard == null || !contains(pCard))
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		if( !isVisible(pCard ))
 		{
@@ -310,8 +334,10 @@ public class Tableau {
 	 * @param pIndex The index of the pile to pop.
 	 * @pre !isEmpty(pIndex)
 	 */
-	public void pop(TableauPile pIndex)
+	public void pop(TableauPile pIndex) throws IllegalArgumentException
 	{
+		if(aPiles.get(pIndex).isEmpty())
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		aVisible.remove(aPiles.get(pIndex).pop());
 	}
@@ -323,8 +349,10 @@ public class Tableau {
 	 * @param pIndex The index of the destination stack.
 	 * @pre pCard != null && pIndex != null;
 	 */
-	public void push(Card pCard, TableauPile pIndex)
+	public void push(Card pCard, TableauPile pIndex) throws IllegalArgumentException
 	{
+		if(pCard == null || pIndex == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		aPiles.get(pIndex).push(pCard);
 		aVisible.add(pCard);

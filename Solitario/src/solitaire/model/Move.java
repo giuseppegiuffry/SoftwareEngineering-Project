@@ -1,5 +1,8 @@
 package solitaire.model;
 
+/**
+ * Represents one possible action in the game.
+ */
 public interface Move {
 	
 	/**
@@ -9,16 +12,16 @@ public interface Move {
 	void perform();
 	
 	/**
-	 * Undoes the move by reversing
-	 * its effect.
+	 * Undoes the move by reversing its effect.
 	 */
 	void undo();
 	
 	/**
-	 * @return True if the move is not a move that
-	 *     advances the game. False by default.
+	 * @return True if the move is not a move that advances the game. False by default.
 	 */
 	default boolean isNull()
-	{ return false; }
+	{ 
+		return false; 
+	}
 
 }

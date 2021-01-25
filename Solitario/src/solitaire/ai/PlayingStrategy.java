@@ -3,6 +3,11 @@ package solitaire.ai;
 import solitaire.model.GameModelView;
 import solitaire.model.Move;
 
+/**
+ * Game-playing behavior. Implementations of this interface are responsible 
+ * for ensuring that the sequence of Move instances returned 
+ * does not put the game in and endless cycle.
+ */
 public interface PlayingStrategy {
 	
 	/**

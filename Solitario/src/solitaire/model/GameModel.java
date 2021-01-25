@@ -13,6 +13,15 @@ import solitaire.cards.Deck;
 import solitaire.cards.Rank;
 import solitaire.cards.Suit;
 
+/**
+ * Keeps track of the current state of the game and provides a facade to it. 
+ * Implements the Singleton GoF design pattern.
+ * 
+ * The game state can logically be separated into four distinct conceptual elements: 
+ * the deck, the discard pile, the foundations
+ * where completed suits are accumulated, and the tableau, which consists of
+ * seven piles where cards fan down in sequences of alternating suit colors.
+ */
 public class GameModel implements GameModelView {
 	
 	private static GameModel INSTANCE;
@@ -68,6 +77,9 @@ public class GameModel implements GameModelView {
 		reset();
 	}
 	
+	/**
+	 * Restores the model to the state corresponding to the start of a new game.
+	 */
 	public void reset()
 	{
 		aMoves.clear();
@@ -89,6 +101,9 @@ public class GameModel implements GameModelView {
 		return INSTANCE;
 	}
 
+	/**
+	 * @return The number of cards in the foundations.
+	 */
 	public int getScore()
 	{
 		return aFoundations.getTotalSize();
@@ -106,10 +121,15 @@ public class GameModel implements GameModelView {
 		return !move.isNull();
 	}
 	
-	
-	public void addListener(GameModelListener pListener)
+	/**
+	 * Registers an observer for the state of the game model.
+	 * @param pListener A listener to register.
+	 * @pre pListener != null
+	 */
+	public void addListener(GameModelListener pListener) throws IllegalArgumentException
 	{
-		
+		if(pListener == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		aListeners.add(pListener);
 	}
 	
@@ -127,7 +147,9 @@ public class GameModel implements GameModelView {
 		}
 	}
 	
-	
+	/**
+	 * @return True if the game is completed.
+	 */
 	public boolean isCompleted()
 	{
 		return aFoundations.getTotalSize() == Rank.values().length * Suit.values().length;
@@ -153,22 +175,21 @@ public class GameModel implements GameModelView {
 	}
 	
 	/**
-	 * Obtain the card on top of the foundation pile pPile
-	 * without removing it.
+	 * Obtain the card on top of the foundation pile pPile without removing it.
 	 * @param pPile The pile to check.
 	 * @return The card on top of the pile.
 	 * @pre pPile != null && !isFoundationPileEmpty(pIndex)
 	 */
-	public Card peekSuitStack(FoundationPile pPile)
+	public Card peekSuitStack(FoundationPile pPile) throws IllegalArgumentException
 	{
-		
+		if(pPile == null || isFoundationPileEmpty(pPile))
+			throw new IllegalArgumentException("Invalid argument passed");
 		return aFoundations.peek(pPile);
 	}
 	
 	@Override
 	public Card peekDiscardPile()
 	{
-		
 		return aDiscard.peek();
 	}
 	
@@ -224,22 +245,25 @@ public class GameModel implements GameModelView {
 	/*
 	 * Removes the moveable card from pLocation.
 	 */
-	private void absorbCard(Location pLocation)
+	private void absorbCard(Location pLocation) throws IllegalArgumentException
 	{
+		
 		if( pLocation == OtherLocation.DISCARD_PILE )
 		{
-			
 			aDiscard.pop();
 		}
 		else if( pLocation instanceof FoundationPile )
 		{
-			
+			if(aFoundations.isEmpty((FoundationPile)pLocation))
+				throw new IllegalArgumentException("Invalid argument passed");
 			aFoundations.pop((FoundationPile)pLocation);
 		}
 		else
 		{
-			
-			aTableau.pop((TableauPile)pLocation);
+			if(pLocation instanceof TableauPile)
+				aTableau.pop((TableauPile)pLocation);
+			else
+				throw new IllegalArgumentException("Invalid argument passed");
 		}
 	}
 	
@@ -263,7 +287,6 @@ public class GameModel implements GameModelView {
 			}
 			else
 			{
-				
 				aTableau.push(pCard, (TableauPile)pDestination);
 			}
 		}
@@ -295,16 +318,17 @@ public class GameModel implements GameModelView {
 	}
 	
 	/**
-	 * Get the sequence consisting of pCard and all 
-	 * the other cards below it, from the tableau.
+	 * Get the sequence consisting of pCard and all the other cards below it, from the tableau.
 	 * @param pCard The top card of the sequence
 	 * @param pPile The requested pile
 	 * @return A non-empty sequence of cards.
 	 * @pre pCard != null and is in pile pPile
 	 */
-	public CardStack getSubStack(Card pCard, TableauPile pPile)
+	public CardStack getSubStack(Card pCard, TableauPile pPile) throws IllegalArgumentException
 	{
-		
+		if(pCard == null || pPile == null || find(pCard) != pPile)
+			throw new IllegalArgumentException("Invalid argument passed");
+	
 		return aTableau.getSequence(pCard, pPile);
 	}
 
@@ -349,17 +373,17 @@ public class GameModel implements GameModelView {
 	} 
 	
 	@Override
-	public boolean isBottomKing(Card pCard)
+	public boolean isBottomKing(Card pCard) throws IllegalArgumentException
 	{
-		
+		if(pCard == null || !aTableau.contains(pCard))
+			throw new IllegalArgumentException("Invalid argument passed");
 		return aTableau.isBottomKing(pCard);
 	}
 
 	
 	/**
-	 * A move that represents the intention to move pCard
-	 * to pDestination, possibly including all cards stacked
-	 * on top of pCard if pCard is in a working stack.
+	 * A move that represents the intention to move pCard to pDestination, 
+	 * possibly including all cards stacked on top of pCard if pCard is in a working stack.
 	 */
 	private class CardMove implements Move
 	{
@@ -377,7 +401,6 @@ public class GameModel implements GameModelView {
 		@Override
 		public void perform()
 		{
-			
 			move(aCard, aDestination);
 			aMoves.push(this);
 		}
@@ -390,7 +413,7 @@ public class GameModel implements GameModelView {
 	}
 	
 	/**
-	 * reveals the top of the stack.
+	 * A move that reveals the top of the stack.
 	 *
 	 */
 	private class RevealTopMove implements Move

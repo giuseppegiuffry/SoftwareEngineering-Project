@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CardStack implements Iterable<Card> {
 	
-private final List<Card> aCards;
+	private final List<Card> aCards;
 	
 	/**
 	 * Creates an empty CardStack.
@@ -39,8 +39,10 @@ private final List<Card> aCards;
 	 * @pre pCard != null;
 	 * @pre !aCards.contains(pCard)
 	 */
-	public void push(Card pCard)
+	public void push(Card pCard) throws IllegalArgumentException
 	{
+		if(pCard == null || aCards.contains(pCard))
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		aCards.add(pCard);
 	}
@@ -51,8 +53,10 @@ private final List<Card> aCards;
 	 * @return The card on top of the stack.
 	 * @pre !isEmpty()
 	 */
-	public Card pop()
+	public Card pop() throws IllegalArgumentException
 	{
+		if(isEmpty())
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		return aCards.remove(aCards.size()-1);
 	}
@@ -61,8 +65,10 @@ private final List<Card> aCards;
 	 * @return The card at the top of the stack.
 	 * @pre !isEmpty();
 	 */
-	public Card peek()
+	public Card peek() throws IllegalArgumentException
 	{
+		if(isEmpty())
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		return aCards.get(aCards.size()-1);
 	}
@@ -72,8 +78,10 @@ private final List<Card> aCards;
 	 * @return The card at the position indicated by pIndex
 	 * @pre pIndex >= 0 && pIndex < size();
 	 */
-	public Card peek(int pIndex)
+	public Card peek(int pIndex) throws IllegalArgumentException
 	{
+		if(pIndex < 0 || pIndex >= size())
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		return aCards.get(pIndex);
 	}

@@ -5,6 +5,9 @@ import java.util.Map;
 
 import javafx.scene.image.Image;
 
+/**
+ * A class to store and manage images of the 52 cards.
+ */
 public class CardImages {
 	
 	private static final String IMAGE_LOCATION = "images/";
@@ -22,8 +25,10 @@ public class CardImages {
 	 * @param pCard the target card
 	 * @return An icon representing the chosen card.
 	 */
-	public static Image getCard( Card pCard )
+	public static Image getCard( Card pCard ) throws IllegalArgumentException
 	{
+		if(pCard == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		return getCard( getCode( pCard ) );
 	}

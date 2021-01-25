@@ -7,9 +7,13 @@ import solitaire.cards.Card;
 import solitaire.cards.CardStack;
 import solitaire.cards.Rank;
 
+/**
+ * Represents the four piles that must be completed to win the game, with the ace
+ * at the bottom, face up, and all cards of the same suit on top, in sequence.
+ */
 public class Foundations {
 	
-private final Map<FoundationPile, CardStack> aPiles = new HashMap<>();
+	private final Map<FoundationPile, CardStack> aPiles = new HashMap<>();
 	
 	/**
 	 * Creates an initialized FoundationPiles object that consists of four empty piles.
@@ -48,15 +52,15 @@ private final Map<FoundationPile, CardStack> aPiles = new HashMap<>();
 	 * @return True if the pile at pLocation is empty
 	 * @pre pLocation != null
 	 */
-	public boolean isEmpty(FoundationPile pLocation)
+	public boolean isEmpty(FoundationPile pLocation) throws IllegalArgumentException
 	{
-		
+		if(pLocation == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		return aPiles.get(pLocation).isEmpty();
 	}
 	
 	public CardStack getPile(FoundationPile pPile)
 	{
-		
 		return new CardStack(aPiles.get(pPile));
 	}
 	
@@ -69,8 +73,10 @@ private final Map<FoundationPile, CardStack> aPiles = new HashMap<>();
 	 *     the case of an ace, if the location is empty.
 	 * @pre pCard != null && pLocation != null
 	 */
-	public boolean canMoveTo(Card pCard, FoundationPile pLocation )
+	public boolean canMoveTo(Card pCard, FoundationPile pLocation ) throws IllegalArgumentException
 	{
+		if(pCard == null && pLocation == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		if( isEmpty(pLocation))
 		{
@@ -86,11 +92,12 @@ private final Map<FoundationPile, CardStack> aPiles = new HashMap<>();
 	/**
 	 * @param pLocation The location of the pile to peek at
 	 * @return The card on top of the pile at pLocation
-	 * @pre pLocation != null & !aPiles.get(pLocation).isEmpty();
+	 * @pre pLocation != null && !aPiles.get(pLocation).isEmpty();
 	 */
-	public Card peek(FoundationPile pLocation)
+	public Card peek(FoundationPile pLocation) throws IllegalArgumentException
 	{
-		
+		if(pLocation == null && aPiles.get(pLocation).isEmpty())
+			throw new IllegalArgumentException("Invalid argument passed");
 		return aPiles.get(pLocation).peek();
 	}
 	
@@ -101,9 +108,10 @@ private final Map<FoundationPile, CardStack> aPiles = new HashMap<>();
 	 * @param pLocation The location where to place the card.
 	 * @pre pCard != null && pLocation != null
 	 */
-	public void push(Card pCard, FoundationPile pLocation)
+	public void push(Card pCard, FoundationPile pLocation) throws IllegalArgumentException
 	{
-		
+		if(pLocation == null && pLocation == null)
+			throw new IllegalArgumentException("Invalid argument passed");
 		aPiles.get(pLocation).push(pCard);
 	}
 	
@@ -114,9 +122,10 @@ private final Map<FoundationPile, CardStack> aPiles = new HashMap<>();
 	 * @param pLocation The location where to obtain the card.
 	 * @pre pLocation != null && !isEmpty(pLocation)
 	 */
-	public Card pop(FoundationPile pLocation)
+	public Card pop(FoundationPile pLocation) throws IllegalArgumentException
 	{
-		
+		if(pLocation == null && isEmpty(pLocation))
+			throw new IllegalArgumentException("Invalid argument passed");
 		return aPiles.get(pLocation).pop();
 	}
 

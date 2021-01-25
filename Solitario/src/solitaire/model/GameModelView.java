@@ -3,6 +3,9 @@ package solitaire.model;
 import solitaire.cards.Card;
 import solitaire.cards.CardStack;
 
+/**
+ * A version of a game model.
+ */
 public interface GameModelView {
 	
 	/**
@@ -35,8 +38,7 @@ public interface GameModelView {
 	
 	/**
 	 * @param pCard A card to test for visibility.
-	 * @return True if the card's value is visible in
-	 *     the tableau;
+	 * @return True if the card's value is visible in the tableau;
 	 */
 	boolean isVisibleInTableau(Card pCard);
 	
@@ -59,8 +61,7 @@ public interface GameModelView {
 	
 	/**
 	 * Determines if pCard can be moved to pLocation
-	 * according to the rules of the game and given the current
-	 * game state. 
+	 * according to the rules of the game and given the current game state. 
 	 * @param pCard The card to move. 
 	 * @param pDestination The destination of the move.
 	 * @return True if the move is a legal move.
@@ -80,10 +81,9 @@ public interface GameModelView {
 	Move getDiscardMove();
 	
 	/**
-	 * that represents moving a card (and possibly
+	 * Represents moving a card (and possibly
 	 * all cards below it if applicable) to pDestination.
-	 * @param pCard The card to move, assumed to be in a 
-	 *     legal position.
+	 * @param pCard The card to move, assumed to be in a legal position.
 	 * @param pDestination The required destination of the card.
  	 * @return An instance of the Move interface
 	 */

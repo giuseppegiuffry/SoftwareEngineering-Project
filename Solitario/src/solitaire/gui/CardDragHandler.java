@@ -8,9 +8,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import solitaire.cards.Card;
 
+/**
+ * Stores a string representing the card dragged.
+ */
 public class CardDragHandler implements EventHandler<MouseEvent> {
 	
-private static final ClipboardContent CLIPBOARD_CONTENT = new ClipboardContent();
+	private static final ClipboardContent CLIPBOARD_CONTENT = new ClipboardContent();
 	
 	private Card aCard;
 	private ImageView aImageView;

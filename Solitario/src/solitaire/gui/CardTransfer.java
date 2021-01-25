@@ -3,19 +3,24 @@ package solitaire.gui;
 import solitaire.cards.Card;
 import solitaire.cards.CardStack;
 
+/**
+ * An immutable utility object to facilitate the transfer of card 
+ * through the drag board (drag and drop space).
+ */
 public class CardTransfer {
 	
-private static final String SEPARATOR = ";";
+	private static final String SEPARATOR = ";";
 	
 	private Card[] aCards;
 	
 	/**
-	 * Creates a card transfer from a serialized
-	 * version of the cards.
+	 * Creates a card transfer from a serialized version of the cards.
 	 * @param pString The serialized version
 	 */
-	public CardTransfer(String pString)
+	public CardTransfer(String pString) throws IllegalArgumentException
 	{
+		if(pString == null || pString.length() <= 0)
+			throw new IllegalArgumentException("Invalid argument passed");
 		
 		String[] tokens = pString.split(SEPARATOR);
 		aCards = new Card[tokens.length];
@@ -27,8 +32,7 @@ private static final String SEPARATOR = ";";
 	}
 	
 	/**
-	 * Converts an array of cards into an id string
-	 * that can be deserialized by the constructor.
+	 * Converts an array of cards into an id string that can be deserialized by the constructor.
 	 * @param pCards The array of cards with high-ranking cards first.
 	 * @return The id string.
 	 */
