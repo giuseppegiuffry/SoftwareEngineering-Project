@@ -1,7 +1,7 @@
 # Progetto finale di Ingegneria del Software - a.a. 2020-2021
 
 Scopo del progetto è progettare una applicazione (per la simulazione) del famoso Gioco dell'Oca (semplificato). Questo applicativo è stato realizzato seguendo un approccio iterativo, in particolare nelle prime iterazioni ci si è concentrati a implementare le funzionalità più importanti individuate nei requisiti. 
-A conclusione di tale lavoro e dopo aver applicato i test unitari con JUnit (con relative correzioni), è stata prodotta la versione del programma "GiocoDellOca.jar" presente nella cartella [jar](https://github.com/giuseppegiuffry/SoftwareEngineering-Project/tree/main/GiocoDellOca/jar).  
+A conclusione di tale lavoro e dopo aver applicato i test unitari con JUnit (con relative correzioni), è stata prodotta la versione del programma "GiocoDellOca.jar" presente nella cartella [GiocoDellOca](https://github.com/giuseppegiuffry/SoftwareEngineering-Project/tree/main/GiocoDellOca).  
 Il risultato finale copre completamente le regole definite dal gioco e permette di avviare una simulazione della partita tramite console.
 
 ### Documentazione
