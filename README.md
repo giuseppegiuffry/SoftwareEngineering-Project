@@ -5,7 +5,7 @@ A conclusione di tale lavoro e dopo aver applicato i test unitari con JUnit (con
 Il risultato finale copre completamente le regole definite dal gioco e permette di avviare una simulazione della partita tramite console.
 
 ### Documentazione
-All'interno della cartella **documentation** è possibile trovare tutta la documentazione, che comprende i documenti e i diagrammi UML realizzati per la progettazione del software. Le varie cartelle ("01-Ideazione", "02-Elaborazione", ecc) contengono i documenti prodotti via via che si procedeva con la progettazione e con l'implementazione dell'applicazione.
+All'interno della cartella **documentazione** è possibile trovare tutta la documentazione, che comprende i documenti e i diagrammi UML realizzati per la progettazione del software. Le varie cartelle ("01-Ideazione", "02-Elaborazione", ecc) contengono i documenti prodotti via via che si procedeva con la progettazione e con l'implementazione dell'applicazione.
 
 ### Librerie e Plugins
 |Libreria/Plugin|Descrizione|
