@@ -15,7 +15,7 @@ class TabelloneTest {
 	
 	@BeforeEach
 	void initTest() {
-		tabellone = new Tabellone();
+		tabellone = Tabellone.getInstance();
 	}
 
 	@Test

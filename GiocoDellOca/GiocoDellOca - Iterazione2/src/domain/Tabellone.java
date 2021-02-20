@@ -5,12 +5,20 @@ import java.util.List;
 
 public class Tabellone {
 	
+	private static Tabellone instance;
 	public static final int DIMENSIONE = 63;
 	private List<Casella> caselle = new ArrayList<>(DIMENSIONE);
 	
-	public Tabellone() {
+	private Tabellone() {
 		costruisciCaselle();
 		collegaCaselle();
+	}
+	
+	public static Tabellone getInstance() {
+		if(instance == null) {
+			instance = new Tabellone();
+		}
+		return instance;
 	}
 	
 	public Casella getCasella(Casella partenza, int distanza) {

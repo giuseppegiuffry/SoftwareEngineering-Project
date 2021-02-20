@@ -19,7 +19,7 @@ class GiocatoreTest {
 	
 	@BeforeEach
 	void initTest() {
-		giocatore = new Giocatore("Giocatore", new Dado(), new Tabellone());
+		giocatore = new Giocatore("Giocatore", new Dado(), Tabellone.getInstance());
 	}
 
 	@Test

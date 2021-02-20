@@ -19,7 +19,7 @@ public class Main {
 		
 		System.out.println("Hai scelto di giocare con " + numGiocatori + " giocatori");
 		
-		GiocoDellOca giocoDellOca = new GiocoDellOca(numGiocatori);
+		GiocoDellOca giocoDellOca = GiocoDellOca.getInstance(numGiocatori);
 		
 		giocoDellOca.giocaPartita();
 		
