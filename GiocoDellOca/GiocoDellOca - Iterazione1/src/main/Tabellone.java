@@ -37,11 +37,6 @@ public class Tabellone {
 		for(int i = 0; i < (DIMENSIONE - 1); i++) {
 			collega(i);
 		}
-		/*
-		Casella prima = (Casella) caselle.get(0);
-		Casella ultima = (Casella) caselle.get(DIMENSIONE - 1);
-		ultima.setProssimaCasella(prima);
-		*/
 	}
 	
 	private void collega(int i) {

@@ -20,7 +20,7 @@ public class GiocoDellOca {
 		}
 	}
 	
-	public void iniziaGioco() {
+	public void giocaPartita() {
 		for(int i = 0; i < ROUND_TOTALI; i++) {
 			giocaRound();
 		}
