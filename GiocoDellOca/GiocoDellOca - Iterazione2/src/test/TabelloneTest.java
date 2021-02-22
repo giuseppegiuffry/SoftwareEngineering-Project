@@ -21,16 +21,35 @@ class TabelloneTest {
 	@Test
 	void testGetCasella() {
 		try {
+			// Verifico che il metodo mi fa spostare dalla casella con indice 1 alla casella con indice (1+5),
+			// dove 5 rappresenta il valore del dado lanciato
 			Casella casellaPartenza = new CasellaRegolare("Casella", 1);
 			Casella casellaArrivo = tabellone.getCasella(casellaPartenza, 5);
-			for(int i = 0; i < tabellone.DIMENSIONE; i++) {
-				System.out.println(tabellone.getCaselle().get(i).getNome());
-			}
+			
 			assertEquals(6, casellaArrivo.getIndice());
         } catch (Exception e) {
         	fail("Unexpected exception");
         }
 	}
 	
-
+	@Test
+	void testGetCasellaPartenza() {
+		try {
+			Casella casellaPartenza = tabellone.getCasellaPartenza();
+			assertEquals("Casella 1", casellaPartenza.getNome());
+        } catch (Exception e) {
+        	fail("Unexpected exception");
+        }
+	}
+	
+	@Test
+	void testGetCasellaArrivo() {
+		try {
+			Casella casellaArrivo = tabellone.getCasellaArrivo();
+			assertEquals("Casella Arrivo", casellaArrivo.getNome());
+        } catch (Exception e) {
+        	fail("Unexpected exception");
+        }
+	}
+	
 }

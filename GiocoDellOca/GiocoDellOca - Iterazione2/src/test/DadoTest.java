@@ -22,6 +22,7 @@ class DadoTest {
 			dado.lancia();
 			int valoreDado = dado.getValoreFaccia();
 			assertTrue(valoreDado >= 1 && valoreDado <= 6);
+			assertFalse(valoreDado < 1 || valoreDado > 6);
         } catch (Exception e) {
         	fail("Unexpected exception");
         }

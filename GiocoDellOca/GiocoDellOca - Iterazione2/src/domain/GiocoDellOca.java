@@ -35,13 +35,8 @@ public class GiocoDellOca {
 		}
 	}
 	
-	
 	public boolean getFinePartita() {
 		return finePartita;
-	}
-	
-	public void setFinePartita(boolean b) {
-		this.finePartita = b;
 	}
 	
 	public List<Giocatore> getGiocatori() {

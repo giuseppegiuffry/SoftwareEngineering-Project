@@ -41,52 +41,41 @@ public class Tabellone {
 	}
 	
 	private void costruisciCaselle() {
-		for(int i = 1; i <= DIMENSIONE; i++) {
+		for(int i = 0; i < DIMENSIONE; i++) {
 			costruisci(i);
 		}
-		costruisciCaselleAvanti();
-		costruisciCaselleIndietro();
-		costruisciCasellaArrivo();
 	}
 	
 	private void costruisci(int i) {
-		Casella casella = new CasellaRegolare("Casella " + i, i - 1);
-		caselle.add(casella);
+		switch (i) {
+		case 11:
+		case 24:
+		case 32:
+		case 43:
+		case 56:
+			Casella casellaAvanti = new CasellaAvanti("CasellaAvanti", i, (int) (Math.random() * 3) + 1);
+		    caselle.add(i, casellaAvanti);
+			break;
+		case 7:
+		case 18:
+		case 28:
+		case 37:
+		case 50:
+			Casella casellaIndietro = new CasellaIndietro("CasellaIndietro", i, (int) (Math.random() * 3) + 1);
+		    caselle.add(i, casellaIndietro);
+			break;
+		case 62:
+			Casella casellaArrivo = new CasellaArrivo("Casella Arrivo", i);
+			caselle.add(i, casellaArrivo);
+			break;
+		default:
+			Casella casellaRegolare = new CasellaRegolare("Casella " + (i+1), i);
+			caselle.add(i, casellaRegolare);
+			break;
+		}
+		
 	}
-	
-	private void costruisciCaselleAvanti() {
-		Casella casellaA1 = new CasellaAvanti("CasellaAvanti 1", 11, (int) (Math.random() * 3) + 1);
-		Casella casellaA2 = new CasellaAvanti("CasellaAvanti 2", 24, (int) (Math.random() * 3) + 1);
-		Casella casellaA3 = new CasellaAvanti("CasellaAvanti 3", 32, (int) (Math.random() * 3) + 1);
-		Casella casellaA4 = new CasellaAvanti("CasellaAvanti 4", 43, (int) (Math.random() * 3) + 1);
-		Casella casellaA5 = new CasellaAvanti("CasellaAvanti 5", 56, (int) (Math.random() * 3) + 1);
-		caselle.set(11, casellaA1);
-		caselle.set(24, casellaA2);
-		caselle.set(32, casellaA3);
-		caselle.set(43, casellaA4);
-		caselle.set(56, casellaA5);
-	}
-	
-	private void costruisciCaselleIndietro() {
-		Casella casellaI1 = new CasellaIndietro("CasellaIndietro 1", 7, (int) (Math.random() * 3) + 1);
-		Casella casellaI2 = new CasellaIndietro("CasellaIndietro 2", 18, (int) (Math.random() * 3) + 1);
-		Casella casellaI3 = new CasellaIndietro("CasellaIndietro 3", 28, (int) (Math.random() * 3) + 1);
-		Casella casellaI4 = new CasellaIndietro("CasellaIndietro 4", 37, (int) (Math.random() * 3) + 1);
-		Casella casellaI5 = new CasellaIndietro("CasellaIndietro 5", 50, (int) (Math.random() * 3) + 1);
-		caselle.set(7, casellaI1);
-		caselle.set(18, casellaI2);
-		caselle.set(28, casellaI3);
-		caselle.set(37, casellaI4);
-		caselle.set(50, casellaI5);
-	}
-	
-	private void costruisciCasellaArrivo() {
-		Casella casellaArrivo = new CasellaArrivo("Casella Arrivo", 62);
-		caselle.set(62, casellaArrivo);
-	}
-	
-	
-	
+		
 	private void collegaCaselle() {
 		for(int i = 0; i < (DIMENSIONE - 1); i++) {
 			collega(i);
